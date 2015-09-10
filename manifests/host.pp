@@ -302,6 +302,7 @@ define gluster::host(
 
 	# firewalling...
 	$shorewall = $::gluster::server::shorewall
+        notify { "shorwall is set to: ${shorewall}": }
 	if ( "${fqdn}" == "${name}" ) and $shorewall {
 		$zone = $::gluster::server::zone	# firewall zone
 		$ips = $::gluster::server::ips		# override host ip list
