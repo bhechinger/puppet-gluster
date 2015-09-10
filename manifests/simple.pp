@@ -40,6 +40,8 @@ class gluster::simple(
 	include gluster::vardir
 	include gluster::volume::property::group::data	# make the groups early
 
+	notify { "gluster::simple debugging\nshorewall = ${shorewall}\nvip = ${vip}": }
+
 	#$vardir = $::gluster::vardir::module_vardir	# with trailing slash
 	$vardir = regsubst($::gluster::vardir::module_vardir, '\/$', '')
 
