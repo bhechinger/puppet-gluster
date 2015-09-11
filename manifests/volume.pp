@@ -357,18 +357,18 @@ define gluster::volume(
 
 		# NOTE: we need to add the $fqdn so that exported resources
 		# don't conflict... I'm not sure they should anyways though
-		@@shorewall::rule { "gluster-volume-${name}-${fqdn}":
-			action => 'ACCEPT',
-			source => "${zone}",	# override this on collect...
-			source_ips => $source_ips,
-			dest => '$FW',
-			proto => 'tcp',
-			port => "${port}",	# comma separated string or list
-			#comment => "${fqdn}",
-			comment => 'Allow incoming tcp port from glusterfsds.',
-			tag => 'gluster_firewall_volume',
-			ensure => present,
-		}
+                #@@shorewall::rule { "gluster-volume-${name}-${fqdn}":
+                #	action => 'ACCEPT',
+                #	source => "${zone}",	# override this on collect...
+                #	source_ips => $source_ips,
+                #	dest => '$FW',
+                #	proto => 'tcp',
+                #	port => "${port}",	# comma separated string or list
+                #	#comment => "${fqdn}",
+                #	comment => 'Allow incoming tcp port from glusterfsds.',
+                #	tag => 'gluster_firewall_volume',
+                #	ensure => present,
+                #}
 		# we probably shouldn't collect the above rule from our self...
 		#Shorewall::Rule <<| tag == 'gluster_firewall_volume' and comment != "${fqdn}" |>> {
 		Shorewall::Rule <<| tag == 'gluster_firewall_volume' |>> {
