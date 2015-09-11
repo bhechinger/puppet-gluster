@@ -178,19 +178,19 @@ class firewall {
 	####################################################################
 	#ACTION      SOURCE DEST                PROTO DEST  SOURCE  ORIGINAL
 	#                                             PORT  PORT(S) DEST
-	shorewall::rule { 'ssh': rule => "
-	SSH/ACCEPT   net    $FW
-	SSH/ACCEPT   man    $FW
-	", comment => 'Allow SSH'}
+  #shorewall::rule { 'ssh': rule => "
+  #SSH/ACCEPT   net    $FW
+  #SSH/ACCEPT   man    $FW
+  #", comment => 'Allow SSH'}
 
-	shorewall::rule { 'ping': rule => "
-	#Ping/DROP    net    $FW
-	Ping/ACCEPT  net    $FW
-	Ping/ACCEPT  man    $FW
-	", comment => 'Allow ping from the `bad` net zone'}
+  #shorewall::rule { 'ping': rule => "
+  ##Ping/DROP    net    $FW
+  #Ping/ACCEPT  net    $FW
+  #Ping/ACCEPT  man    $FW
+  #", comment => 'Allow ping from the `bad` net zone'}
 
-	shorewall::rule { 'icmp': rule => "
-	ACCEPT       $FW    net                 icmp
-	ACCEPT       $FW    man                 icmp
-	", comment => 'Allow icmp from the firewall zone'}
+  #shorewall::rule { 'icmp': rule => "
+  #ACCEPT       $FW    net                 icmp
+  #ACCEPT       $FW    man                 icmp
+  #", comment => 'Allow icmp from the firewall zone'}
 }

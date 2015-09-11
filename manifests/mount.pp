@@ -83,7 +83,7 @@ define gluster::mount(
 	# TODO: review shorewall rules against nfs fstype mount option
 	if $shorewall {
 		$safename = regsubst("${name}", '/', '_', 'G')	# make /'s safe
-		@@shorewall::rule { "glusterd-management-${fqdn}-${safename}":
+                #@@shorewall::rule { "glusterd-management-${fqdn}-${safename}":
 		#@@shorewall::rule { "glusterd-management-${volume}-${fqdn}":
 			action => 'ACCEPT',
 			source => '',	# override this on collect...
