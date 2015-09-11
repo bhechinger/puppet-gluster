@@ -314,64 +314,64 @@ define gluster::host(
 			default => ["${valid_ip}"],
 		}
 
-		@@shorewall::rule { "glusterd-management-${name}":
-			action => 'ACCEPT',
-			source => "${zone}",	# override this on collect...
-			source_ips => $source_ips,
-			dest => '$FW',
-			proto => 'tcp',
-			port => '24007',
-			comment => 'Allow incoming tcp:24007 from each glusterd.',
-			tag => 'gluster_firewall_management',
-			ensure => present,
-		}
+                #@@shorewall::rule { "glusterd-management-${name}":
+                #	action => 'ACCEPT',
+                #	source => "${zone}",	# override this on collect...
+                #	source_ips => $source_ips,
+                #	dest => '$FW',
+                #	proto => 'tcp',
+                #	port => '24007',
+                #	comment => 'Allow incoming tcp:24007 from each glusterd.',
+                #	tag => 'gluster_firewall_management',
+                #	ensure => present,
+                #}
 
 		# NOTE: used by rdma
-		@@shorewall::rule { "glusterd-rdma-${name}":
-			action => 'ACCEPT',
-			source => "${zone}",	# override this on collect...
-			source_ips => $source_ips,
-			dest => '$FW',
-			proto => 'tcp',
-			port => '24008',
-			comment => 'Allow incoming tcp:24008 for rdma.',
-			tag => 'gluster_firewall_management',
-			ensure => present,
-		}
+                #@@shorewall::rule { "glusterd-rdma-${name}":
+                #	action => 'ACCEPT',
+                #	source => "${zone}",	# override this on collect...
+                #	source_ips => $source_ips,
+                #	dest => '$FW',
+                #	proto => 'tcp',
+                #	port => '24008',
+                #	comment => 'Allow incoming tcp:24008 for rdma.',
+                #	tag => 'gluster_firewall_management',
+                #	ensure => present,
+                #}
 
 		# TODO: is this only used for nfs?
-		@@shorewall::rule { "gluster-tcp111-${name}":
-			action => 'ACCEPT',
-			source => "${zone}",	# override this on collect...
-			source_ips => $source_ips,
-			dest => '$FW',
-			proto => 'tcp',
-			port => '111',
-			comment => 'Allow tcp 111.',
-			tag => 'gluster_firewall_management',
-			ensure => present,
-		}
+                #@@shorewall::rule { "gluster-tcp111-${name}":
+                #	action => 'ACCEPT',
+                #	source => "${zone}",	# override this on collect...
+                #	source_ips => $source_ips,
+                #	dest => '$FW',
+                #	proto => 'tcp',
+                #	port => '111',
+                #	comment => 'Allow tcp 111.',
+                #	tag => 'gluster_firewall_management',
+                #	ensure => present,
+                #}
 
 		# TODO: is this only used for nfs?
 		# TODO: johnmark says gluster nfs udp doesn't work :P
-		@@shorewall::rule { "gluster-udp111-${name}":
-			action => 'ACCEPT',
-			source => "${zone}",	# override this on collect...
-			source_ips => $source_ips,
-			dest => '$FW',
-			proto => 'udp',
-			port => '111',
-			comment => 'Allow udp 111.',
-			tag => 'gluster_firewall_management',
-			ensure => present,
-		}
+                #@@shorewall::rule { "gluster-udp111-${name}":
+                #	action => 'ACCEPT',
+                #	source => "${zone}",	# override this on collect...
+                #	source_ips => $source_ips,
+                #	dest => '$FW',
+                #	proto => 'udp',
+                #	port => '111',
+                #	comment => 'Allow udp 111.',
+                #	tag => 'gluster_firewall_management',
+                #	ensure => present,
+                #}
 
 		# TODO: this collects our own entries too... we could exclude
 		# them but this isn't a huge issue at the moment...
-		Shorewall::Rule <<| tag == 'gluster_firewall_management' |>> {
-			source => "${zone}",	# use our source zone
-			before => Service["${::gluster::params::service_glusterd}"],
-		}
+                #Shorewall::Rule <<| tag == 'gluster_firewall_management' |>> {
+                #	source => "${zone}",	# use our source zone
+                #	before => Service["${::gluster::params::service_glusterd}"],
+                #}
 	}
 }
 
